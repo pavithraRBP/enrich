@@ -1,54 +1,61 @@
-#include <stdio.h>
-
-int main(void) {
-	// your code g
-	 char a[100],b[100];
-	int c=0,i,j,temp=0,n,d=0;
-	printf("enter the no.of terms");
-	scanf("%d",&n);
-	for(i=0;i<n;i++)
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+char str[10][32]={"a","b","a3","a3"},b[10][32],temp,uni[100][100];
+int i=0,j=0,c,d,m,e=1;
+for(i=0;i<5;i++)
 	{
-		scanf("%c",&a[i]);
-	}
-	for(i=0;i<=n;i++)
-	{
-		if((a[i]>64)&&(a[i]<91))
+	isalpha(str[i]);
+	if(!isalpha(str[i]))
 		{
-			c++;
-			b[d]=a[i];
 		
-			d++;
-			
-		}	
+		strcpy(b[m],str[i]);	
+		printf("%s\n",b[m]);
+		m++;
+		}
 	}
-	for(i=0;i<d;i++)
+for(i=0;i<m;i++)
 	{
-		for(j=i+1;j<d;j++)
+		for(j=i+1;j<m;j++)
 		
 	
 			{ 
-			if(b[i]>b[j])
+			if(strcmp(str[i],str[j])<0)
 				{
-					temp=b[i];
-					b[i]=b[j];
-					b[j]=temp;
+					strcpy(temp,str[i]);
+					strcpy(str[j],str[i]);
+					strcpy(str[i],temp);
 				}
 			}
 	}
-	for(i=0;i<d;i++)
-	printf("%d",b[i]);
-	
-	for(i=0;i<d;i++)
+	for(i=0;i<m;i++)
+	printf("%s",str[i]);
+	strcpy(uni[0],str[0]);
+	for(i=0;i<m;i++)
 		{
-			for(j=i+1;j<d;j++)
-				{
-					if (b[i]==b[j])
+				if (strcmp(str[i],str[i+1])!=0)
 					{
-						c--;
+						strcpy(uni[e],str[i+1]);
+						e++;
+				
 					}		
-				}
+				
 		}
-	printf("%d",c);
-
-	return 0;
+for(i=0;i<3;i++)
+	printf("%s",uni[i]);
+	
 }
+int isalpha(char str[])
+{
+int c=0,i,n=strlen(str);
+for(i=0;i<n;i++)
+	{
+	if(((str[i]>64)&&(str[i]<91))||((str[i]>96)&&(str[i]<123)))
+		{
+		return 0;
+		}
+}
+return 1;
+}
+	
